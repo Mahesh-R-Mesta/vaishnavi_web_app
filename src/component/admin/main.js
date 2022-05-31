@@ -80,6 +80,7 @@ function AdminMain(props) {
               <CustomMenuItem
                 title={each.title}
                 icon={each.icon}
+                key={each.title}
                 onClick={() => nav(each.route)}
               />
             );

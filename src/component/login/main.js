@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Validator from "../../utils/validator";
+import ApiRequest from "../../config/apiRequest";
+import URL from "../../utils/urls";
 
 // const useStyle = makeStyles((theme) => ({}));
 
@@ -12,18 +14,25 @@ function LoginCard(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
-  const login = () => {
+  const login = async () => {
     const validator = new Validator();
     if (
       validator.isStringValid(userName) &&
       validator.isStringValid(password)
     ) {
-      navigate("/admin");
+      // const api = new ApiRequest();
+      const response = await ApiRequest.call("POST", URL.accountLogin, {
+        username: userName,
+        password: password,
+      });
+      console.log(response);
+      if (response != null) {
+        navigate("/admin");
+      }
     } else {
       toast("Please Enter all the fields");
     }
   };
-  console.log("start");
   useEffect(() => {
     if (welcome) {
       toast("Welcome");
