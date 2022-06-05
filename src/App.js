@@ -7,6 +7,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import AdminScreen from "./component/admin";
+import PrivateValidate from "./utils/PrivateValidate";
+import React from "react";
 
 function App() {
   return (

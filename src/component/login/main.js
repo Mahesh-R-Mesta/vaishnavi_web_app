@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Validator from "../../utils/validator";
 import ApiRequest from "../../config/apiRequest";
 import URL from "../../utils/urls";
-
+import StatusCode from "../../config/status"
 // const useStyle = makeStyles((theme) => ({}));
 
 function LoginCard(props) {
@@ -14,6 +14,8 @@ function LoginCard(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
+
+
   const login = async () => {
     const validator = new Validator();
     if (
@@ -21,13 +23,16 @@ function LoginCard(props) {
       validator.isStringValid(password)
     ) {
       // const api = new ApiRequest();
-      const response = await ApiRequest.call("POST", URL.accountLogin, {
-        username: userName,
-        password: password,
-      });
-      console.log(response);
-      if (response != null) {
+      const response = await ApiRequest.call("POST",URL.accountLogin,{
+         "username": userName,
+         "password": password
+    });
+    if(response.code !== StatusCode.success) return toast('Something went wrong');
+      if (response.data.isLoggedIn) {
+        toast('Successfully Logged in');
         navigate("/admin");
+      } else {
+        toast('wrong password or username');
       }
     } else {
       toast("Please Enter all the fields");
@@ -66,13 +71,13 @@ function LoginCard(props) {
           />
         </div>
         <div className="mb-3"></div>
-        <Typography variant="body2" fontWeight={600}>
+        <Typography variant="body2" fontWeight={600} >
           Password
         </Typography>
 
         <input
           className="form-control"
-          type="text"
+          type="password"
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />

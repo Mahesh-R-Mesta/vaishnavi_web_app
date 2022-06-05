@@ -1,0 +1,40 @@
+
+.productScreen {
+    padding: 20px 20px 20px 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.labelStyle {
+    padding-bottom:5px;
+    font-size: 17;
+    color:'black';
+}
+
+.subhead {
+    color: 'orange';
+    font-family:'Courier New', Courier, monospace;
+    font-weight:800;
+}
+
+.submitButton {
+    width: 10%;
+    height: 3rem;
+    font-weight: bolder;
+    margin-right:2rem;
+    border-radius:10px;
+}
+
+.checkbox {
+    height: 1rem;
+    width: 1rem;
+    margin:4px;
+}
+
+  

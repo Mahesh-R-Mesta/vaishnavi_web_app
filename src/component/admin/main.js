@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Avatar, Hidden } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFirstOrder } from "@fortawesome/free-brands-svg-icons";
 // import { connect } from "react-redux";
 import {
   faBoxes,
@@ -87,7 +86,7 @@ function AdminMain(props) {
           })}
         </Menu>
       </ProSidebar>
-      <div>
+      <div className="viewScreen" >
         <h1 className="headerText">VAISHNAVI PICKLES</h1>
         <Hidden>
           <AdminRouting />
@@ -98,7 +97,6 @@ function AdminMain(props) {
 }
 
 const mapStateProps = (state) => {
-  console.log(state);
   return {
     mysate: state,
   };
